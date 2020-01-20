@@ -1,0 +1,55 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Articles</title>
+	<link href="{% static 'img/brand/favicon.png' %}" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
+  <!-- Icons -->
+  <link href="{% static 'vendor/nucleo/css/nucleo.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+  <!-- Argon CSS -->
+  <link type="text/css" href="{% static 'css/argon.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <h1><a href="{% url 'home' %}"><img src="{% static 'img/icons/common/google.svg' %}"></a></h1>
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+        <li>
+          <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-sm btn-danger">logout</button>
+
+          </form>
+        </li>
+        <li><a class="btn btn-sm btn-success" href="{% url 'articles:create' %}">Create Article</a></li>
+        {% else %}
+          <li><a class="btn btn-sm btn-info" href="{% url 'accounts:login' %}">Login</a></li>
+          <li><a class="btn btn-sm btn-primary" href="{% url 'accounts:signup' %}">Signup</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/popper/popper.min.js' %} "></script>
+  <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %} "></script>
+  <script src="{% static 'vendor/headroom/headroom.min.js' %} "></script>
+  <!-- Optional JS -->
+  <script src="{% static 'vendor/onscreen/onscreen.min.js' %} "></script>
+  <script src="{% static 'vendor/nouislider/js/nouislider.min.js' %} "></script>
+  <script src="{% static 'vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+  <!-- Argon JS -->
+  <script src="{% static 'js/argon.js' %} "></script>
+</html>

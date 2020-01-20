@@ -1,0 +1,21 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+	<h3 class="container-fluid">{{ article.slug }}</h3>
+	<div class="container">
+		
+		<div class="article card">
+			<div class="card-header">
+				<h5>{{ article.title }}</h5>
+			</div>
+			<div class="card-body">
+			<img class="container" src="{{ article.thumb.url }}">
+			<p>{{ article.body }}</p>
+			<p>{{ article.date }}</p>
+			</div>
+		</div>
+		
+	</div>
+
+{% endblock %}

@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Articles</title>
-</head>
-<body>
-	<h1>Arlticles List</h1>
-	<div class="articles">
+{% extends 'base_layout.html' %}
+
+{% block content %}
+	<h3>Arlticles List</h3>
+	<div class="container">
 		{% for article in articles %}
-			<div class="article">
-				<h2><a href="#">{{ article.title }}</a></h2>
-				<p>{{ article.body }}</p>
-				<p>{{ article.date }}</p>
+		<div class="article card">
+			<div class="card-header">
+				<h5><a href="{% url 'articles:detail' slug=article.slug %}">{{ article.title }}</a></h5>
 			</div>
+			<div class="card-body">
+			<p>{{ article.snippet }}</p>
+			<p>{{ article.date }}</p>
+			</div>
+		</div>
 		{% endfor %}
 	</div>
-</body>
-</html>
+
+{% endblock %}
